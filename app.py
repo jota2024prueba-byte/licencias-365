@@ -36,7 +36,11 @@ if "usuario" not in st.session_state:
 def cargar_datos():
     url = f"https://docs.google.com/spreadsheets/d/{GOOGLE_SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}"
     try:
-        df = pd.read_csv(url)
+        df = pd.read_csv(
+            url,
+            on_bad_lines="skip",
+            engine="python"
+        )
         df.columns = df.columns.str.strip()
         return df
     except Exception as e:
