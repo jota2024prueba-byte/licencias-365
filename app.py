@@ -4,16 +4,14 @@ import pandas as pd
 # ==============================================
 # CONFIGURACIÓN - MODIFICA ESTOS DATOS AQUÍ
 # ==============================================
-GOOGLE_SHEET_ID = "AQUÍ_EL_ID_DE_TU_HOJA"
-SHEET_NAME = "Hoja 1"
+GOOGLE_SHEET_ID = "https://docs.google.com/spreadsheets/d/1I2TY7QoF9mFqzYoNFEGrMjMpnNYZv6NUuusTvGPa09s/edit?gid=0#gid=0"
+SHEET_NAME = "365"
 
 # 5 USUARIOS PERMITIDOS - Puedes cambiar usuarios y claves
 USUARIOS = {
-    "persona1": "clave123",
-    "persona2": "clave456",
-    "persona3": "clave789",
-    "persona4": "clave0ab",
-    "persona5": "clave0cd"
+    "cristian.vicioso": "Cris2026*+*",
+   "alfonso.gomez": "Alf2026*+*",
+    "jorge.cantillo": "Jolucaro*+*",
 }
 # ==============================================
 
