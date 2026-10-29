@@ -4,7 +4,7 @@ import pandas as pd
 # ==============================================
 # CONFIGURACIÓN - MODIFICA ESTOS DATOS AQUÍ
 # ==============================================
-GOOGLE_SHEET_ID = "https://docs.google.com/spreadsheets/d/1I2TY7QoF9mFqzYoNFEGrMjMpnNYZv6NUuusTvGPa09s/edit?gid=0#gid=0"
+GOOGLE_SHEET_ID = "https://docs.google.com/spreadsheets/d/1O3fjQBNkTR0I7c28xTXkVRr8Szs_-YH9S0o149mLsa4/edit?gid=0#gid=0"
 SHEET_NAME = "365"
 
 # 5 USUARIOS PERMITIDOS - Puedes cambiar usuarios y claves
