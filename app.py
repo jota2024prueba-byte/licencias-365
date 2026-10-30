@@ -6,8 +6,9 @@ GOOGLE_SHEET_ID = "1O3fjQBNkTR0I7c28xTXkVRr8Szs_-YH9S0o149mLsa4/edit?gid=0#gid=0
 SHEET_NAME = "365"
 
 USUARIOS = {
-    "alfonso.gomez": "Alf2026*+*"
-    "jorge.cantillo": "Jolucaro*+*"
+    "alfonso.gomez": "Alf2026*+*",
+    "jorge.cantillo": "Jolucaro*+*,
+   
     
 }
 # ==============================================
