@@ -77,4 +77,4 @@ if df is not None:
 
 if st.button("Cerrar sesión"):
     del st.session_state.usuario
-    st.rerun()
+    st.re
