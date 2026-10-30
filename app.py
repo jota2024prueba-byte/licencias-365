@@ -7,7 +7,7 @@ SHEET_NAME = "365"
 USUARIOS = {
     "cristian.vicioso": "Vic26*+*",
     "alfonso.gomez": "Poncho26*+*",
-    "jorge.cantillo": "Joca2026*+*"
+    "jorge.cantillo": "Joca2026*+*",
 }
 
 st.set_page_config(page_title="Licencias 365", page_icon="💻", layout="wide")
