@@ -7,7 +7,7 @@ SHEET_NAME = "365"
 
 USUARIOS = {
     "alfonso.gomez": "Alf2026*+*"
-    "cristian.vicioso": "Cris2026*+*"
+    "cristian.vicioso": "Vic26*+*"
     "jorge.cantillo": "Jolucaro*+*"
     
 }
