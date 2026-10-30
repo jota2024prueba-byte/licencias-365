@@ -5,9 +5,9 @@ GOOGLE_SHEET_ID = "1O3fjQBNkTR0I7c28xTXkVRr8Szs_-YH9S0o149mLsa4/edit?pli=1&gid=0
 SHEET_NAME = "365"
 
 USUARIOS = {
-    "cristian.vicioso": "Vic26***",
-    "alfonso.gomez": "Poncho2026*+*",
-    "jorge.cantillo": "Joca26*+*"
+    "cristian.vicioso": "Vic26*+*",
+    "alfonso.gomez": "Poncho26*+*",
+    "jorge.cantillo": "Joca2026*+*"
 }
 
 st.set_page_config(page_title="Licencias 365", page_icon="💻", layout="wide")
