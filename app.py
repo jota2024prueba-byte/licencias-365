@@ -53,6 +53,7 @@ if df is not None:
     lic = "LICENCIA"
     
     bus = st.text_input("🔍 Buscar: código, serial, equipo o correo")
+    fil_dep = st.selectbox("Filtrar por Dependencia", ["Todas"] + sorted(df[dep].dropna().unique().tolist()))
         fil_usu = st.selectbox("Filtrar por Usuario", ["Todos"] + sorted(df[usu].dropna().unique().tolist()))
     
     res = df.copy()
