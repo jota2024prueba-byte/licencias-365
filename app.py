@@ -2,14 +2,15 @@ import streamlit as st
 import pandas as pd
 
 # ==============================================
+# CONFIGURACIÓN
+# ==============================================
 GOOGLE_SHEET_ID = "1O3fjQBNkTR0I7c28xTXkVRr8Szs_-YH9S0o149mLsa4/edit?gid=0#gid=0"
 SHEET_NAME = "365"
 
 USUARIOS = {
-    "alfonso.gomez": "Alf2026*+*",
+      "alfonso.gomez": "Alf2026*+*",
     "jorge.cantillo": "Jolucaro*+*",
-   
-    
+    "cristian.vicioso": "Vic26*+*",
 }
 # ==============================================
 
@@ -40,7 +41,8 @@ def cargar_datos():
             on_bad_lines="skip",
             engine="python"
         )
-        df.columns = df.columns.str.strip()  # Borra espacios sobrantes en los nombres
+        df.columns = df.columns.str.strip()
+        df.columns = df.columns.str.upper()
         return df
     except Exception as e:
         st.error(f"Error: {e}")
@@ -48,9 +50,8 @@ def cargar_datos():
 
 df = cargar_datos()
 
-# --- DIAGNÓSTICO: MUESTRA LOS NOMBRES REALES DE LAS COLUMNAS ---
-st.write("📋 Columnas encontradas en tu hoja:")
-st.write(list(df.columns))  # 👈 Aquí verás cómo se llaman de verdad
+# --- DIAGNÓSTICO DE COLUMNAS ---
+st.write("📋 Columnas detectadas:", list(df.columns) if df is not None else "Sin datos")
 
 # --- INTERFAZ PRINCIPAL ---
 st.title("📋 Consulta Licencias 365")
@@ -58,30 +59,28 @@ st.caption(f"👤 Conectado: {st.session_state.usuario}")
 st.markdown("---")
 
 if df is not None:
-    # Reemplaza los nombres abajo por los que veas en la lista de arriba
-    col_dependencia = "DEPENDENCIA"
-    col_usuario = "USUARIO"
-    col_activo = "CODIGO DE ACTIVO"
-    col_serial = "SERIAL"
-    col_equipo = "COMPUTADOR"
-    col_licencia = "LICENCIA"
+    col_dep = "DEPENDENCIA"
+    col_usu = "USUARIO"
+    col_cod = "CODIGO DE ACTIVO"
+    col_ser = "SERIAL"
+    col_pc = "COMPUTADOR"
+    col_lic = "LICENCIA"
     
-    busqueda = st.text_input("🔍 Buscar: código, serial, equipo o correo", 
-                              placeholder="Ej: 0525196081528050")
+    busqueda = st.text_input("🔍 Buscar: código, serial, equipo o correo")
     
-    dep = st.selectbox("Filtrar por Dependencia", ["Todas"] + sorted(df[col_dependencia].dropna().unique().tolist()))
-    usu = st.selectbox("Filtrar por Usuario", ["Todos"] + sorted(df[col_usuario].dropna().unique().tolist()))
+    dep_val = st.selectbox("Filtrar por Dependencia", ["Todas"] + sorted(df[col_dep].dropna().unique().tolist()))
+    usu_val = st.selectbox("Filtrar por Usuario", ["Todos"] + sorted(df[col_usu].dropna().unique().tolist()))
     
     res = df.copy()
     if busqueda:
         filtro = False
-        for col in [col_activo, col_serial, col_equipo, col_usuario, col_dependencia]:
-            filtro |= res[col].astype(str).str.contains(busqueda, case=False, na=False)
+        for c in [col_cod, col_ser, col_pc, col_usu, col_dep]:
+            filtro |= res[c].astype(str).str.contains(busqueda, case=False, na=False)
         res = res[filtro]
-    if dep != "Todas":
-        res = res[res[col_dependencia] == dep]
-    if usu != "Todos":
-        res = res[res[col_usuario] == usu]
+    if dep_val != "Todas":
+        res = res[res[col_dep] == dep_val]
+    if usu_val != "Todos":
+        res = res[res[col_usu] == usu_val]
     
     st.info(f"✅ {len(res)} equipos encontrados")
     
@@ -91,16 +90,16 @@ if df is not None:
         st.markdown(f"""
         | Campo | Información |
         |---|---|
-        | 🏢 Dependencia | **{eq[col_dependencia]}** |
-        | 💻 Equipo | {eq[col_equipo]} |
-        | 🔢 Serial | `{eq[col_serial]}` |
-        | 🏷️ Código Activo | `{eq[col_activo]}` |
-        | 📧 Usuario/Licencia | `{eq[col_usuario]}` |
-        | 📄 Tipo Licencia | {eq[col_licencia]} |
+        | 🏢 Dependencia | **{eq[col_dep]}** |
+        | 💻 Equipo | {eq[col_pc]} |
+        | 🔢 Serial | `{eq[col_ser]}` |
+        | 🏷️ Código Activo | `{eq[col_cod]}` |
+        | 📧 Usuario/Licencia | `{eq[col_usu]}` |
+        | 📄 Tipo Licencia | {eq[col_lic]} |
         """)
     else:
         for _, eq in res.iterrows():
-            st.markdown(f"**{eq[col_equipo]}** · `{eq[col_activo]}` · {eq[col_usuario]}")
+            st.markdown(f"**{eq[col_pc]}** · `{eq[col_cod]}` · {eq[col_usu]}")
             st.divider()
     
     st.download_button("📥 Descargar CSV", res.to_csv(index=False).encode("utf-8"), "licencias.csv", "text/csv")
